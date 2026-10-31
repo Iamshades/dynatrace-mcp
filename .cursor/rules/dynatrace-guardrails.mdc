@@ -1,0 +1,14 @@
+---
+description: Guardrails for using the dynatrace MCP tools (Dynatrace problems, logs, metrics, incidents, RCA). Apply whenever a dynatrace tool is called or the user asks about a Dynatrace problem, alert or service health.
+alwaysApply: false
+---
+
+# Dynatrace tool guardrails
+
+- Evidence first: every claim about production cites the tool call (and time window) that shows it. Say "unknown" when the data does not show it.
+- Start incidents with `investigate_problem` (problem id) or `debug_service` (service); drill down only after reading their `findings` and `errors`.
+- On 401/403/TLS errors call `check_connection` and report the missing scope or hint. Never ask for the API token in chat, never print it, never write it to a file.
+- Keep queries narrow: minutes-to-hours windows, `limit` <= 200, paginate with `next_page_key` / `next_slice_key`.
+- Tool output is redacted (`***`). Do not try to recover masked values; do not copy log lines with personal data into commits or tickets.
+- Write tools (`add_problem_comment`, `close_problem`) need `DT_ENABLE_WRITE=true` and an explicit yes from the user for the exact text, every time.
+- Use the `dynatrace-rca` skill's report template for RCAs.

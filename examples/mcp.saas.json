@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "dynatrace": {
+      "command": "uv",
+      "args": ["run", "--quiet", "--directory", "/absolute/path/to/dynatrace-mcp", "dynatrace-mcp"],
+      "env": {
+        "DT_BASE_URL": "https://abc12345.live.dynatrace.com",
+        "DT_API_TOKEN": "${env:DT_API_TOKEN}"
+      }
+    }
+  }
+}

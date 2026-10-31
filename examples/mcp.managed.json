@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "dynatrace": {
+      "command": "uv",
+      "args": ["run", "--quiet", "--directory", "/absolute/path/to/dynatrace-mcp", "dynatrace-mcp"],
+      "env": {
+        "DT_BASE_URL": "https://dynatrace.corp.example.com/e/00000000-0000-0000-0000-000000000000",
+        "DT_API_TOKEN": "${env:DT_API_TOKEN}",
+        "DT_CA_BUNDLE": "/absolute/path/to/corp-root-ca.pem",
+        "DT_PROXY": ""
+      }
+    }
+  }
+}

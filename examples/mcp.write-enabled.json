@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "dynatrace": {
+      "command": "uv",
+      "args": ["run", "--quiet", "--directory", "/absolute/path/to/dynatrace-mcp", "dynatrace-mcp"],
+      "env": {
+        "DT_BASE_URL": "${env:DT_BASE_URL}",
+        "DT_API_TOKEN": "${env:DT_API_TOKEN}",
+        "DT_ENABLE_WRITE": "true"
+      }
+    }
+  }
+}

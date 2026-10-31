@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "dynatrace": {
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "DT_API_TOKEN=\"$(security find-generic-password -s dynatrace-api-token -w)\" exec uv run --quiet --directory /absolute/path/to/dynatrace-mcp dynatrace-mcp"
+      ],
+      "env": {
+        "DT_BASE_URL": "https://dynatrace.corp.example.com/e/00000000-0000-0000-0000-000000000000"
+      }
+    }
+  }
+}

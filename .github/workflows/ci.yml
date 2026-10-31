@@ -1,0 +1,22 @@
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync --locked
+      - run: uv run pytest -v
+      - run: uv run dynatrace-mcp --version
+      - name: mcp.json examples are valid JSON
+        run: for f in .cursor/mcp.json examples/*.json; do python -m json.tool "$f" > /dev/null; done
